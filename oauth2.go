@@ -210,6 +210,10 @@ func (c *Config) PasswordCredentialsToken(ctx context.Context, username, passwor
 //
 // Opts may include the PKCE verifier code if previously used in AuthCodeURL.
 // See https://www.oauth.com/oauth2-servers/pkce/ for more info.
+//
+// This function may also be used for Oauth 2.0 Token Exchange by setting a
+// new grant_type and other parameters in AuthCodeOption options and a blank
+// code.  See https://tools.ietf.org/html/rfc8693#section-2.1 for more info.
 func (c *Config) Exchange(ctx context.Context, code string, opts ...AuthCodeOption) (*Token, error) {
 	v := url.Values{
 		"grant_type": {"authorization_code"},
